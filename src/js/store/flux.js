@@ -1,12 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			//Your data structures, A.K.A Entities
 			contacts: []
 		},
 		actions: {
-			//(Arrow) Functions that update the Store
-			// Remember to use the scope: scope.state.store & scope.setState()
 			getAllAgenda: () => {
 				fetch("https://playground.4geeks.com/apis/fake/contact/agenda/cesar86")
 					.then(response => response.json())
@@ -24,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						console.log(response.status);
-						if (response.status == 201) {
+						if (response.status === 201) {
 							alert("Contacto creado correctamente");
 						}
 						return response.json();
@@ -39,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						console.log(response.status);
-						if (response.status == 201) {
+						if (response.status === 201) {
 							getActions().getAllAgenda();
 						}
 						return response.json();
@@ -48,8 +45,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log(error));
 			},
 			updateContact: (contactId, updateData) => {
-				console.log(updateData, contactId);
-				/*fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, {
+				updateData.agenda_slug = "cesar86";
+				fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json"
@@ -58,15 +55,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						console.log(response.status);
-						if (response.status == 200) {
+						if (response.status === 200) {
 							getActions().getAllAgenda();
 						}
 						return response.json();
 					})
 					.then(data => console.log(data))
-					.catch(error => console.log(error));*/
+					.catch(error => {
+						console.log(error);
+						if (error.response && error.response.status === 400) {
+							console.log("Error 400: Bad Request");
+							// Manejar el error 400 específicamente aquí
+							// Puedes mostrar un mensaje al usuario u otras acciones según sea necesario
+						}
+					});
 			}
 		}
 	};
 };
+
 export default getState;

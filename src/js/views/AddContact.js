@@ -34,9 +34,10 @@ export const AddContact = () => {
 		};
 		console.log(newData);
 
-		//if (actions && actions.createOneContact) {
-		actions.createContact(newData);
-		/*.then(response => {
+		if (actions && actions.createContact) {
+			actions
+				.createContact(newData)
+				.then(response => {
 					// Contacto creado correctamente
 					console.log(response);
 					alert("Contacto creado correctamente");
@@ -47,9 +48,9 @@ export const AddContact = () => {
 					alert("Error al crear el contacto");
 				});
 		} else {
-			console.error("actions.createOneContact no está definido");
+			console.error("actions.createContact no está definido");
 			alert("Error interno al crear el contacto");
-		}*/
+		}
 	}
 	return (
 		<div className="container">

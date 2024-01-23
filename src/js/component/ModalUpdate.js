@@ -17,10 +17,10 @@ export const ModalUpdate = props => {
 	};
 
 	const handleUpdate = event => {
-		//actions.updateContact(props.id, updatedContact);
+		actions.updateContact(props.id, updatedContact);
 		event.preventDefault();
-		console.log("funciona");
-		//props.onClose();
+
+		props.onClose();
 	};
 
 	return (
@@ -84,12 +84,13 @@ export const ModalUpdate = props => {
 									onChange={handleInputChange}
 								/>
 							</div>
-							<button type="submit" className="btn btn-primary">
-								Save changes
-							</button>
 						</form>
 					</div>
+
 					<div className="modal-footer">
+						<button type="button" className="btn btn-primary" onClick={handleUpdate}>
+							Save changes
+						</button>
 						<button type="button" className="btn btn-secondary" onClick={props.onClose}>
 							Close
 						</button>
@@ -106,7 +107,7 @@ ModalUpdate.propTypes = {
 	address: PropTypes.string,
 	phone: PropTypes.string,
 	id: PropTypes.number,
-	onUpdate: PropTypes.func,
+	handleUpdate: PropTypes.func,
 	onClose: PropTypes.func,
 	show: PropTypes.bool
 };
