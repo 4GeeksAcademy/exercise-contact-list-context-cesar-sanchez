@@ -107,7 +107,6 @@ ModalUpdate.propTypes = {
 	address: PropTypes.string,
 	phone: PropTypes.string,
 	id: PropTypes.number,
-	handleUpdate: PropTypes.func,
 	onClose: PropTypes.func,
 	show: PropTypes.bool
 };

@@ -55,7 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(response => {
 						console.log(response.status);
-						if (response.status === 200) {
+						if (response.status === 201) {
 							getActions().getAllAgenda();
 						}
 						return response.json();
@@ -66,7 +66,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (error.response && error.response.status === 400) {
 							console.log("Error 400: Bad Request");
 							// Manejar el error 400 específicamente aquí
-							// Puedes mostrar un mensaje al usuario u otras acciones según sea necesario
 						}
 					});
 			}

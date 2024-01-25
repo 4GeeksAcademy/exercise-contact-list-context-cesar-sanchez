@@ -35,18 +35,7 @@ export const AddContact = () => {
 		console.log(newData);
 
 		if (actions && actions.createContact) {
-			actions
-				.createContact(newData)
-				.then(response => {
-					// Contacto creado correctamente
-					console.log(response);
-					alert("Contacto creado correctamente");
-				})
-				.catch(error => {
-					// Manejar el error, por ejemplo, mostrar un mensaje de error
-					console.error("Error al crear el contacto:", error);
-					alert("Error al crear el contacto");
-				});
+			actions.createContact(newData);
 		} else {
 			console.error("actions.createContact no está definido");
 			alert("Error interno al crear el contacto");
