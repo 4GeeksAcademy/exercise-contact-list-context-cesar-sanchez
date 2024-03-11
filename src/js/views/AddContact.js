@@ -32,7 +32,7 @@ export const AddContact = () => {
 			address: newAddress,
 			agenda_slug: "cesar86"
 		};
-		console.log(newData);
+		// console.log(newData);
 
 		if (actions && actions.createContact) {
 			actions.createContact(newData);

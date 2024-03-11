@@ -1,15 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext.js";
 
 export const ModalUpdate = props => {
 	const { store, actions } = useContext(Context);
+
+	// Utiliza el estado local para almacenar los valores del contacto actual
 	const [updatedContact, setUpdatedContact] = useState({
 		full_name: props.full_name || "",
 		email: props.email || "",
 		address: props.address || "",
 		phone: props.phone || ""
 	});
+
+	// Utiliza useEffect para actualizar el estado cuando cambian las propiedades del contacto
+	useEffect(() => {
+		setUpdatedContact({
+			full_name: props.full_name || "",
+			email: props.email || "",
+			address: props.address || "",
+			phone: props.phone || ""
+		});
+	}, [props.full_name, props.email, props.address, props.phone]);
 
 	const handleInputChange = event => {
 		const { name, value } = event.target;
@@ -18,8 +30,6 @@ export const ModalUpdate = props => {
 
 	const handleUpdate = event => {
 		actions.updateContact(props.id, updatedContact);
-		event.preventDefault();
-
 		props.onClose();
 	};
 
